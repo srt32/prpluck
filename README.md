@@ -7,4 +7,4 @@ Getting Started
 
 Set your personal GitHub API token as an environment variable called `GITHUB_PERSONAL_TOKEN`
 
-Run `prpluck -o="thoughtbot" -r="hound"` where `0` is for `organization` (or `user`) and `r` is for `repo`.
+Run `prpluck -o="thoughtbot" -r="hound"` where `o` is for `organization` (or `user`) and `r` is for `repo`.
