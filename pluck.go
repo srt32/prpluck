@@ -3,12 +3,12 @@ package main
 import (
 	"flag"
 	"fmt"
-  "math/rand"
+	"math/rand"
 	"os"
 	"time"
 
-	"github.com/google/go-github/github"
 	"code.google.com/p/goauth2/oauth"
+	"github.com/google/go-github/github"
 	"github.com/toqueteos/webbrowser"
 )
 
