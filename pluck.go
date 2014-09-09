@@ -3,10 +3,13 @@ package main
 import (
 	"flag"
 	"fmt"
+  "math/rand"
 	"os"
+	"time"
 
 	"github.com/google/go-github/github"
 	"code.google.com/p/goauth2/oauth"
+	"github.com/toqueteos/webbrowser"
 )
 
 func main() {
@@ -20,14 +23,15 @@ func main() {
 
 	client := github.NewClient(t.Client())
 
-	reposList, _, err := client.PullRequests.List(*org, *repo, nil)
+	pullRequests, _, err := client.PullRequests.List(*org, *repo, nil)
 
 	if err != nil {
 		fmt.Println(err)
 	}
 
-	fmt.Println(reposList)
-	// select a randome one that is open
+	rand.Seed(time.Now().UTC().UnixNano())
+	randomNum := rand.Int31n(int32(len(pullRequests)))
+	selectedPR := pullRequests[randomNum]
 
-	// open it in the browser
+	webbrowser.Open(*selectedPR.HTMLURL)
 }
