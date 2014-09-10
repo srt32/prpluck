@@ -13,7 +13,7 @@ import (
 )
 
 var (
-	org = flag.String("o", "", "Name of organization")
+	org  = flag.String("o", "", "Name of organization")
 	repo = flag.String("r", "", "Name of repositoy")
 )
 
