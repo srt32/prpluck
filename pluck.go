@@ -12,9 +12,12 @@ import (
 	"github.com/toqueteos/webbrowser"
 )
 
+var (
+	org = flag.String("o", "", "Name of organization")
+	repo = flag.String("r", "", "Name of repositoy")
+)
+
 func main() {
-	org := flag.String("o", "", "Name of organization")
-	repo := flag.String("r", "", "Name of repositoy")
 	flag.Parse()
 
 	t := &oauth.Transport{
@@ -22,13 +25,16 @@ func main() {
 	}
 
 	client := github.NewClient(t.Client())
-
 	pullRequests, _, err := client.PullRequests.List(*org, *repo, nil)
 
 	if err != nil {
 		fmt.Println(err)
 	}
 
+	goToRandomPullRequest(pullRequests)
+}
+
+func goToRandomPullRequest(pullRequests []github.PullRequest) {
 	rand.Seed(time.Now().UTC().UnixNano())
 	randomNum := rand.Int31n(int32(len(pullRequests)))
 	selectedPR := pullRequests[randomNum]
