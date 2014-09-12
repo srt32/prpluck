@@ -15,14 +15,13 @@ import (
 var (
 	org  = flag.String("o", "", "Name of organization")
 	repo = flag.String("r", "", "Name of repositoy")
+	t = &oauth.Transport{
+		Token: &oauth.Token{AccessToken: os.Getenv("GITHUB_PERSONAL_TOKEN")},
+	}
 )
 
 func main() {
 	flag.Parse()
-
-	t := &oauth.Transport{
-		Token: &oauth.Token{AccessToken: os.Getenv("GITHUB_PERSONAL_TOKEN")},
-	}
 
 	client := github.NewClient(t.Client())
 	pullRequests, _, err := client.PullRequests.List(*org, *repo, nil)
