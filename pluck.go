@@ -24,6 +24,12 @@ func main() {
 	flag.Parse()
 
 	client := github.NewClient(t.Client())
+
+  if *org == "" || *repo == "" {
+		fmt.Println("Please provide an org and repo")
+		os.Exit(1)
+	}
+
 	pullRequests, _, err := client.PullRequests.List(*org, *repo, nil)
 
 	if err != nil {
