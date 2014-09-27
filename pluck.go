@@ -15,6 +15,8 @@ var (
 	t = &oauth.Transport{
 		Token: &oauth.Token{AccessToken: os.Getenv("GITHUB_PERSONAL_TOKEN")},
 	}
+
+	client = github.NewClient(t.Client())
 )
 
 func main() {
@@ -25,8 +27,6 @@ func main() {
 
 	org := os.Args[1]
 	repo := os.Args[2]
-
-	client := github.NewClient(t.Client())
 
 	pullRequests, _, err := client.PullRequests.List(org, repo, nil)
 
