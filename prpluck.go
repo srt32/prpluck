@@ -6,17 +6,10 @@ import (
 	"os"
 	"time"
 
-	"code.google.com/p/goauth2/oauth"
 	"github.com/google/go-github/github"
+	"github.com/srt32/prpluck/client"
+	"github.com/srt32/prpluck/config"
 	"github.com/toqueteos/webbrowser"
-)
-
-var (
-	t = &oauth.Transport{
-		Token: &oauth.Token{AccessToken: os.Getenv("GITHUB_PERSONAL_TOKEN")},
-	}
-
-	client = github.NewClient(t.Client())
 )
 
 func main() {
@@ -24,6 +17,10 @@ func main() {
 		fmt.Println("Please provide an org and repo")
 		os.Exit(1)
 	}
+
+	userConfig := config.UserConfig{}
+
+	client, err := client.NewClient(userConfig)
 
 	org := os.Args[1]
 	repo := os.Args[2]
