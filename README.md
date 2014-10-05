@@ -9,6 +9,6 @@ Set your personal GitHub API token as an environment variable called `GITHUB_PER
 
 `go get github.com/srt32/prpluck`
 
-`prpluck -o="thoughtbot" -r="hound"`
+`prpluck thoughtbot hound`
 
-where `o` is for `organization` (or `user`) and `r` is for `repo`. A randomly selected open PR from your project will be opened in your browser.
+A randomly selected open PR from the thoughtbot/hound project will be opened in your browser.
