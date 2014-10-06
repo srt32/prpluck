@@ -20,6 +20,9 @@ func main() {
 
 	userConfig := config.UserConfig{}
 
+	// if no token, return error with instructions
+	// add config command that accepts a single token argument
+
 	client, err := client.NewClient(userConfig)
 
 	org := os.Args[1]
